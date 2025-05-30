@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sistema de monitoramento e prevenção de enchentes para proteger sua família e propriedade">
-    <title>FloodGuard - Sistema de Prevenção de Enchentes</title>
+    <meta name="description" content="Portal completo de prevenção de enchentes com dados, mapas, alertas e guias de segurança para proteger sua família">
+    <title>HidroSafe - Portal Completo de Prevenção de Enchentes</title>
     
     <!-- Reset CSS -->
     <link rel="stylesheet" href="css/reset.css">
@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -23,15 +26,17 @@
         <nav class="nav">
             <div class="nav-container">
                 <div class="logo">
-                    <h1>🌊 FloodGuard</h1>
+                    <h1>💧 HidroSafe</h1>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="#problema" class="nav-link">O Problema</a></li>
-                    <li><a href="#tecnologias" class="nav-link">Tecnologias</a></li>
-                    <li><a href="#objetivos" class="nav-link">Objetivos</a></li>
-                    <li><a href="#publico" class="nav-link">Público-Alvo</a></li>
+                    <li><a href="#problema" class="nav-link">Dados</a></li>
+                    <li><a href="#estatisticas" class="nav-link">Estatísticas</a></li>
+                    <li><a href="#mapa-risco" class="nav-link">Mapa de Risco</a></li>
+                    <li><a href="#tecnologias" class="nav-link">Tecnologia</a></li>
+                    <li><a href="#preparacao" class="nav-link">Preparação</a></li>
+                    <li><a href="#emergencia" class="nav-link">Emergência</a></li>
                     <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
-                    <li><a href="#uso-diario" class="nav-link">Uso Diário</a></li>
+                    <li><a href="#recursos" class="nav-link">Recursos</a></li>
                 </ul>
             </div>
         </nav>
@@ -39,17 +44,17 @@
 
     <!-- Main Content -->
     <main class="main">
-        <!-- Seção 1: O Problema -->
+        <!-- Seção 1: O Problema das Enchentes -->
         <section id="problema" class="section section-problema">
             <div class="container">
                 <div class="section-content fade-in">
                     <div class="text-content">
-                        <h2 class="section-title">O Problema das Enchentes</h2>
+                        <h2 class="section-title">Enchentes no Brasil: Uma Realidade Devastadora</h2>
                         <p class="section-text">
-                            Brasil registra mais de 8 mil mortes por enchentes nos últimos 20 anos.
+                            O Brasil registra mais de 8.000 mortes por enchentes nos últimos 20 anos, com prejuízos econômicos superiores a R$ 15 bilhões anuais.
                         </p>
                         <p class="section-text">
-                            Regiões Sul e Sudeste concentram 70% dos casos de inundações urbanas graves.
+                            As regiões Sul e Sudeste concentram 70% dos casos de inundações urbanas graves, afetando mais de 5 milhões de pessoas anualmente.
                         </p>
                         <div class="stats-box">
                             <div class="stat-item">
@@ -57,195 +62,781 @@
                                 <span class="stat-label">Mortes por enchentes</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-number">70%</span>
-                                <span class="stat-label">Casos no Sul/Sudeste</span>
+                                <span class="stat-number">R$ 15bi</span>
+                                <span class="stat-label">Prejuízos anuais</span>
                             </div>
+                            <div class="stat-item">
+                                <span class="stat-number">5M+</span>
+                                <span class="stat-label">Pessoas afetadas</span>
+                            </div>
+                        </div>
+                        <div class="problem-details">
+                            <h3>Principais Causas das Enchentes Urbanas:</h3>
+                            <ul class="causes-list">
+                                <li>🏙️ <strong>Urbanização descontrolada:</strong> Impermeabilização do solo reduz absorção natural</li>
+                                <li>🌧️ <strong>Mudanças climáticas:</strong> Chuvas mais intensas e concentradas</li>
+                                <li>🚰 <strong>Infraestrutura inadequada:</strong> Sistemas de drenagem insuficientes</li>
+                                <li>🏠 <strong>Ocupação irregular:</strong> Construções em áreas de várzea e encostas</li>
+                                <li>🗑️ <strong>Poluição urbana:</strong> Entupimento de bueiros e canais</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="image-content">
-                        <img src="/placeholder.svg?height=350&width=450" alt="Enchente urbana causando destruição em área residencial brasileira" class="section-image">
+                        <img src="/placeholder.svg?height=400&width=500" alt="Enchente urbana causando destruição em área residencial brasileira" class="section-image">
+                        <div class="image-caption">
+                            <p>Enchente em São Paulo - Janeiro 2024: Mais de 200mm de chuva em 3 horas</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção 2: Tecnologias Utilizadas -->
+        <!-- Seção 2: Estatísticas Detalhadas -->
+        <section id="estatisticas" class="section section-estatisticas">
+            <div class="container">
+                <div class="section-content fade-in">
+                    <div class="full-width-content">
+                        <h2 class="section-title center">Dados e Estatísticas de Enchentes no Brasil</h2>
+                        
+                        <div class="charts-grid">
+                            <div class="chart-container">
+                                <h3>Mortes por Enchentes (2004-2024)</h3>
+                                <canvas id="deathsChart"></canvas>
+                                <p class="chart-description">Evolução anual do número de óbitos causados por enchentes no Brasil</p>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <h3>Distribuição por Região</h3>
+                                <canvas id="regionChart"></canvas>
+                                <p class="chart-description">Percentual de ocorrências de enchentes por região brasileira</p>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <h3>Precipitação Média Mensal</h3>
+                                <canvas id="precipitationChart"></canvas>
+                                <p class="chart-description">Média histórica de chuvas nas principais capitais (mm)</p>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <h3>Prejuízos Econômicos</h3>
+                                <canvas id="economicChart"></canvas>
+                                <p class="chart-description">Perdas econômicas anuais causadas por enchentes (R$ bilhões)</p>
+                            </div>
+                        </div>
+
+                        <div class="detailed-stats">
+                            <div class="stat-card">
+                                <h4>🏘️ Áreas Urbanas Afetadas</h4>
+                                <div class="stat-details">
+                                    <p><strong>São Paulo:</strong> 15% da área metropolitana em risco alto</p>
+                                    <p><strong>Rio de Janeiro:</strong> 12% da cidade em áreas de risco</p>
+                                    <p><strong>Belo Horizonte:</strong> 8% do território vulnerável</p>
+                                    <p><strong>Porto Alegre:</strong> 20% da região metropolitana</p>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <h4>📊 Dados Meteorológicos</h4>
+                                <div class="stat-details">
+                                    <p><strong>Chuva crítica:</strong> Acima de 30mm/hora</p>
+                                    <p><strong>Enchente garantida:</strong> Mais de 60mm/hora</p>
+                                    <p><strong>Tempo de resposta:</strong> 15-45 minutos após início</p>
+                                    <p><strong>Duração média:</strong> 2-6 horas por evento</p>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <h4>🚨 Alertas e Evacuações</h4>
+                                <div class="stat-details">
+                                    <p><strong>Tempo ideal de alerta:</strong> 6 horas antecipação</p>
+                                    <p><strong>Taxa de sucesso:</strong> 85% com alerta adequado</p>
+                                    <p><strong>Redução de danos:</strong> Até 80% com evacuação</p>
+                                    <p><strong>Pessoas salvas/ano:</strong> Mais de 2.000 vidas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Mapa de Risco Interativo -->
+        <section id="mapa-risco" class="section section-mapa">
+            <div class="container">
+                <div class="section-content fade-in">
+                    <div class="full-width-content">
+                        <h2 class="section-title center">Mapa de Risco de Enchentes - Brasil</h2>
+                        
+                        <div class="map-container">
+                            <div class="map-visualization">
+                                <div class="brazil-map">
+                                    <svg viewBox="0 0 800 600" class="brazil-svg">
+                                        <!-- Regiões do Brasil com cores de risco -->
+                                        <g class="region" data-region="sul" data-risk="alto">
+                                            <path d="M200,400 L300,400 L300,500 L200,500 Z" fill="#ff6b6b" opacity="0.8"/>
+                                            <text x="250" y="450" text-anchor="middle" fill="white" font-weight="bold">SUL</text>
+                                            <text x="250" y="470" text-anchor="middle" fill="white" font-size="12">Alto Risco</text>
+                                        </g>
+                                        
+                                        <g class="region" data-region="sudeste" data-risk="muito-alto">
+                                            <path d="M300,300 L450,300 L450,450 L300,450 Z" fill="#dc2626" opacity="0.8"/>
+                                            <text x="375" y="370" text-anchor="middle" fill="white" font-weight="bold">SUDESTE</text>
+                                            <text x="375" y="390" text-anchor="middle" fill="white" font-size="12">Muito Alto</text>
+                                        </g>
+                                        
+                                        <g class="region" data-region="centro-oeste" data-risk="medio">
+                                            <path d="M200,200 L350,200 L350,350 L200,350 Z" fill="#fbbf24" opacity="0.8"/>
+                                            <text x="275" y="270" text-anchor="middle" fill="white" font-weight="bold">CENTRO-OESTE</text>
+                                            <text x="275" y="290" text-anchor="middle" fill="white" font-size="12">Médio Risco</text>
+                                        </g>
+                                        
+                                        <g class="region" data-region="nordeste" data-risk="baixo">
+                                            <path d="M350,100 L550,100 L550,300 L350,300 Z" fill="#10b981" opacity="0.8"/>
+                                            <text x="450" y="195" text-anchor="middle" fill="white" font-weight="bold">NORDESTE</text>
+                                            <text x="450" y="215" text-anchor="middle" fill="white" font-size="12">Baixo Risco</text>
+                                        </g>
+                                        
+                                        <g class="region" data-region="norte" data-risk="medio">
+                                            <path d="M150,50 L500,50 L500,200 L150,200 Z" fill="#f59e0b" opacity="0.8"/>
+                                            <text x="325" y="120" text-anchor="middle" fill="white" font-weight="bold">NORTE</text>
+                                            <text x="325" y="140" text-anchor="middle" fill="white" font-size="12">Médio Risco</text>
+                                        </g>
+                                    </svg>
+                                </div>
+                                
+                                <div class="map-legend">
+                                    <h4>Legenda de Risco</h4>
+                                    <div class="legend-item">
+                                        <span class="legend-color muito-alto"></span>
+                                        <span>Muito Alto Risco</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color alto"></span>
+                                        <span>Alto Risco</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color medio"></span>
+                                        <span>Médio Risco</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color baixo"></span>
+                                        <span>Baixo Risco</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="region-details" id="regionDetails">
+                                <h3>Selecione uma região no mapa</h3>
+                                <p>Clique em qualquer região para ver informações detalhadas sobre o risco de enchentes.</p>
+                            </div>
+                        </div>
+
+                        <div class="cities-risk-table">
+                            <h3>Principais Cidades em Risco</h3>
+                            <div class="table-container">
+                                <table class="risk-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cidade</th>
+                                            <th>Estado</th>
+                                            <th>Nível de Risco</th>
+                                            <th>População Afetada</th>
+                                            <th>Última Grande Enchente</th>
+                                            <th>Precipitação Crítica</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="risk-muito-alto">
+                                            <td>São Paulo</td>
+                                            <td>SP</td>
+                                            <td><span class="risk-badge muito-alto">Muito Alto</span></td>
+                                            <td>1.8M pessoas</td>
+                                            <td>Janeiro 2024</td>
+                                            <td>45mm/h</td>
+                                        </tr>
+                                        <tr class="risk-muito-alto">
+                                            <td>Rio de Janeiro</td>
+                                            <td>RJ</td>
+                                            <td><span class="risk-badge muito-alto">Muito Alto</span></td>
+                                            <td>950K pessoas</td>
+                                            <td>Abril 2023</td>
+                                            <td>40mm/h</td>
+                                        </tr>
+                                        <tr class="risk-alto">
+                                            <td>Belo Horizonte</td>
+                                            <td>MG</td>
+                                            <td><span class="risk-badge alto">Alto</span></td>
+                                            <td>420K pessoas</td>
+                                            <td>Dezembro 2023</td>
+                                            <td>50mm/h</td>
+                                        </tr>
+                                        <tr class="risk-alto">
+                                            <td>Porto Alegre</td>
+                                            <td>RS</td>
+                                            <td><span class="risk-badge alto">Alto</span></td>
+                                            <td>380K pessoas</td>
+                                            <td>Maio 2024</td>
+                                            <td>35mm/h</td>
+                                        </tr>
+                                        <tr class="risk-medio">
+                                            <td>Curitiba</td>
+                                            <td>PR</td>
+                                            <td><span class="risk-badge medio">Médio</span></td>
+                                            <td>280K pessoas</td>
+                                            <td>Março 2023</td>
+                                            <td>55mm/h</td>
+                                        </tr>
+                                        <tr class="risk-medio">
+                                            <td>Salvador</td>
+                                            <td>BA</td>
+                                            <td><span class="risk-badge medio">Médio</span></td>
+                                            <td>320K pessoas</td>
+                                            <td>Novembro 2022</td>
+                                            <td>60mm/h</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Tecnologias de Monitoramento -->
         <section id="tecnologias" class="section section-tecnologias">
             <div class="container">
                 <div class="section-content reverse fade-in">
                     <div class="text-content">
-                        <h2 class="section-title">Tecnologias de Monitoramento</h2>
+                        <h2 class="section-title">Sistema Inteligente de Monitoramento</h2>
                         <p class="section-text">
-                            Sensores de nível d'água e pluviômetros conectados via IoT em tempo real.
+                            Nossa tecnologia combina sensores IoT de última geração, inteligência artificial preditiva e análise meteorológica em tempo real para detectar riscos de enchente com até 6 horas de antecedência.
                         </p>
                         <p class="section-text">
-                            Inteligência artificial analisa dados meteorológicos e emite alertas preventivos automáticos.
+                            O sistema processa mais de 10.000 dados por minuto, incluindo níveis de água, precipitação, umidade do solo e previsões meteorológicas para gerar alertas precisos e personalizados.
                         </p>
+                        
+                        <div class="tech-specs">
+                            <h3>Especificações Técnicas:</h3>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-icon">📡</span>
+                                    <div class="spec-details">
+                                        <h4>Sensores IoT</h4>
+                                        <p>500+ sensores distribuídos</p>
+                                        <p>Precisão: ±2mm</p>
+                                        <p>Atualização: 30 segundos</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="spec-item">
+                                    <span class="spec-icon">🤖</span>
+                                    <div class="spec-details">
+                                        <h4>IA Preditiva</h4>
+                                        <p>Machine Learning avançado</p>
+                                        <p>Precisão: 94% de acerto</p>
+                                        <p>Antecedência: 6 horas</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="spec-item">
+                                    <span class="spec-icon">🛰️</span>
+                                    <div class="spec-details">
+                                        <h4>Dados Satelitais</h4>
+                                        <p>Imagens em tempo real</p>
+                                        <p>Resolução: 10m</p>
+                                        <p>Cobertura: 100% território</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="tech-grid">
-                            <div class="tech-item">
-                                <span class="tech-icon">📡</span>
-                                <span class="tech-name">Sensores IoT</span>
-                            </div>
-                            <div class="tech-item">
-                                <span class="tech-icon">🤖</span>
-                                <span class="tech-name">IA Preditiva</span>
-                            </div>
                             <div class="tech-item">
                                 <span class="tech-icon">📱</span>
                                 <span class="tech-name">App Mobile</span>
+                                <span class="tech-desc">Alertas push instantâneos</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-icon">🌐</span>
+                                <span class="tech-name">Portal Web</span>
+                                <span class="tech-desc">Dashboard completo</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-icon">📞</span>
+                                <span class="tech-name">SMS/Chamadas</span>
+                                <span class="tech-desc">Múltiplos canais</span>
                             </div>
                         </div>
                     </div>
                     <div class="image-content">
-                        <img src="/placeholder.svg?height=350&width=450" alt="Sistema de sensores IoT monitorando níveis de água e enviando dados para aplicativo" class="section-image">
+                        <img src="/placeholder.svg?height=400&width=500" alt="Sistema de sensores IoT monitorando níveis de água e enviando dados para aplicativo" class="section-image">
+                        <div class="tech-diagram">
+                            <h4>Como Funciona o Sistema</h4>
+                            <div class="diagram-steps">
+                                <div class="step">1. Coleta de Dados</div>
+                                <div class="arrow">→</div>
+                                <div class="step">2. Análise IA</div>
+                                <div class="arrow">→</div>
+                                <div class="step">3. Previsão</div>
+                                <div class="arrow">→</div>
+                                <div class="step">4. Alerta</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção 3: Objetivos -->
-        <section id="objetivos" class="section section-objetivos">
+        <!-- Seção 5: Guia de Preparação -->
+        <section id="preparacao" class="section section-preparacao">
             <div class="container">
                 <div class="section-content fade-in">
-                    <div class="text-content">
-                        <h2 class="section-title">Objetivos de Prevenção</h2>
-                        <p class="section-text">
-                            Reduzir em 80% os danos materiais através de alertas antecipados eficazes.
-                        </p>
-                        <p class="section-text">
-                            Salvar vidas com evacuação preventiva baseada em dados meteorológicos precisos.
-                        </p>
-                        <div class="objectives-list">
-                            <div class="objective-item">
-                                <span class="objective-icon">🛡️</span>
-                                <span class="objective-text">Proteção de vidas</span>
+                    <div class="full-width-content">
+                        <h2 class="section-title center">Guia Completo de Preparação para Enchentes</h2>
+                        
+                        <div class="preparation-guide">
+                            <div class="guide-section">
+                                <h3>🏠 Preparação da Casa</h3>
+                                <div class="guide-content">
+                                    <div class="checklist">
+                                        <h4>Kit de Emergência Essencial:</h4>
+                                        <ul class="emergency-checklist">
+                                            <li>💧 Água potável (4 litros por pessoa/dia por 3 dias)</li>
+                                            <li>🥫 Alimentos não perecíveis para 3 dias</li>
+                                            <li>🔦 Lanternas e pilhas extras</li>
+                                            <li>📻 Rádio a pilha ou manivela</li>
+                                            <li>💊 Medicamentos essenciais</li>
+                                            <li>📄 Documentos em sacos plásticos</li>
+                                            <li>💰 Dinheiro em espécie</li>
+                                            <li>🧥 Roupas extras e cobertores</li>
+                                            <li>🔧 Ferramentas básicas</li>
+                                            <li>📱 Carregador portátil</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="home-protection">
+                                        <h4>Proteção da Residência:</h4>
+                                        <div class="protection-tips">
+                                            <div class="tip-card">
+                                                <span class="tip-icon">🚪</span>
+                                                <h5>Vedação</h5>
+                                                <p>Instale barreiras removíveis em portas e janelas</p>
+                                            </div>
+                                            <div class="tip-card">
+                                                <span class="tip-icon">⚡</span>
+                                                <h5>Eletricidade</h5>
+                                                <p>Eleve tomadas e equipamentos elétricos</p>
+                                            </div>
+                                            <div class="tip-card">
+                                                <span class="tip-icon">🏠</span>
+                                                <h5>Estrutura</h5>
+                                                <p>Verifique telhado, calhas e sistema de drenagem</p>
+                                            </div>
+                                            <div class="tip-card">
+                                                <span class="tip-icon">📦</span>
+                                                <h5>Objetos</h5>
+                                                <p>Mova itens valiosos para locais altos</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="objective-item">
-                                <span class="objective-icon">🏠</span>
-                                <span class="objective-text">Preservação de bens</span>
+                            
+                            <div class="guide-section">
+                                <h3>👨‍👩‍👧‍👦 Plano Familiar de Emergência</h3>
+                                <div class="family-plan">
+                                    <div class="plan-step">
+                                        <h4>1. Rotas de Evacuação</h4>
+                                        <ul>
+                                            <li>Identifique 2 rotas diferentes para sair de casa</li>
+                                            <li>Conheça o caminho para abrigos públicos</li>
+                                            <li>Pratique as rotas com toda a família</li>
+                                            <li>Considere limitações de mobilidade</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="plan-step">
+                                        <h4>2. Pontos de Encontro</h4>
+                                        <ul>
+                                            <li>Local próximo à casa (vizinho, praça)</li>
+                                            <li>Local fora do bairro (escola, igreja)</li>
+                                            <li>Contato fora da cidade</li>
+                                            <li>Todos devem memorizar os endereços</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="plan-step">
+                                        <h4>3. Comunicação</h4>
+                                        <ul>
+                                            <li>Lista de contatos de emergência</li>
+                                            <li>Números da Defesa Civil e Bombeiros</li>
+                                            <li>Contato de parentes em outras cidades</li>
+                                            <li>Redes sociais para comunicação</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="objective-item">
-                                <span class="objective-icon">⚡</span>
-                                <span class="objective-text">Resposta rápida</span>
+                            
+                            <div class="guide-section">
+                                <h3>📱 Tecnologia e Alertas</h3>
+                                <div class="tech-guide">
+                                    <div class="app-features">
+                                        <h4>App HidroSafe - Recursos:</h4>
+                                        <div class="features-grid">
+                                            <div class="feature">
+                                                <span class="feature-icon">🚨</span>
+                                                <h5>Alertas Personalizados</h5>
+                                                <p>Receba avisos específicos para sua localização</p>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">📍</span>
+                                                <h5>Mapa em Tempo Real</h5>
+                                                <p>Visualize áreas de risco e rotas seguras</p>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">📊</span>
+                                                <h5>Dados Meteorológicos</h5>
+                                                <p>Acompanhe precipitação e previsões</p>
+                                            </div>
+                                            <div class="feature">
+                                                <span class="feature-icon">🆘</span>
+                                                <h5>Botão de Emergência</h5>
+                                                <p>Solicite ajuda com um toque</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="image-content">
-                        <img src="/placeholder.svg?height=350&width=450" alt="Família sendo evacuada preventivamente com sistema de alerta funcionando" class="section-image">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção 4: Público-Alvo -->
-        <section id="publico" class="section section-publico">
+        <!-- Seção 6: Procedimentos de Emergência -->
+        <section id="emergencia" class="section section-emergencia">
             <div class="container">
-                <div class="section-content reverse fade-in">
-                    <div class="text-content">
-                        <h2 class="section-title">Regiões de Alto Risco</h2>
-                        <p class="section-text">
-                            Moradores de São Paulo, Rio de Janeiro e região metropolitana. Famílias em áreas de várzea e encostas vulneráveis.
-                        </p>
-                        <p class="section-text">
-                            Comunidades do Sul afetadas por chuvas intensas sazonais. Residentes de cidades com histórico de alagamentos recorrentes.
-                        </p>
-                        <div class="risk-regions">
-                            <div class="region-item high-risk">
-                                <span class="region-name">Grande SP</span>
-                                <span class="risk-level">Alto Risco</span>
+                <div class="section-content fade-in">
+                    <div class="full-width-content">
+                        <h2 class="section-title center">Procedimentos de Emergência Durante Enchentes</h2>
+                        
+                        <div class="emergency-procedures">
+                            <div class="procedure-timeline">
+                                <h3>Linha do Tempo da Emergência</h3>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">6h</div>
+                                        <div class="timeline-content">
+                                            <h4>Alerta Preventivo</h4>
+                                            <p>Prepare kit de emergência e monitore atualizações</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">3h</div>
+                                        <div class="timeline-content">
+                                            <h4>Alerta de Atenção</h4>
+                                            <p>Mova objetos valiosos, desligue energia se necessário</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">1h</div>
+                                        <div class="timeline-content">
+                                            <h4>Alerta Crítico</h4>
+                                            <p>Prepare-se para evacuação imediata</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">0h</div>
+                                        <div class="timeline-content">
+                                            <h4>Evacuação</h4>
+                                            <p>Saia imediatamente para local seguro</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="region-item high-risk">
-                                <span class="region-name">Rio de Janeiro</span>
-                                <span class="risk-level">Alto Risco</span>
+                            
+                            <div class="safety-rules">
+                                <h3>Regras de Segurança Fundamentais</h3>
+                                <div class="rules-grid">
+                                    <div class="rule-card danger">
+                                        <h4>❌ NUNCA FAÇA</h4>
+                                        <ul>
+                                            <li>Atravesse águas correntes</li>
+                                            <li>Dirija em ruas alagadas</li>
+                                            <li>Toque em fios elétricos</li>
+                                            <li>Beba água contaminada</li>
+                                            <li>Retorne antes da liberação</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="rule-card safe">
+                                        <h4>✅ SEMPRE FAÇA</h4>
+                                        <ul>
+                                            <li>Siga rotas de evacuação</li>
+                                            <li>Mantenha-se em locais altos</li>
+                                            <li>Ouça autoridades locais</li>
+                                            <li>Ajude vizinhos idosos</li>
+                                            <li>Mantenha calma e paciência</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="region-item medium-risk">
-                                <span class="region-name">Sul do Brasil</span>
-                                <span class="risk-level">Médio Risco</span>
+                            
+                            <div class="emergency-contacts">
+                                <h3>Contatos de Emergência</h3>
+                                <div class="contacts-grid">
+                                    <div class="contact-card">
+                                        <span class="contact-icon">🚒</span>
+                                        <h4>Bombeiros</h4>
+                                        <p class="contact-number">193</p>
+                                        <p>Emergências e resgates</p>
+                                    </div>
+                                    
+                                    <div class="contact-card">
+                                        <span class="contact-icon">🛡️</span>
+                                        <h4>Defesa Civil</h4>
+                                        <p class="contact-number">199</p>
+                                        <p>Alertas e evacuações</p>
+                                    </div>
+                                    
+                                    <div class="contact-card">
+                                        <span class="contact-icon">🚓</span>
+                                        <h4>Polícia Militar</h4>
+                                        <p class="contact-number">190</p>
+                                        <p>Segurança e ordem</p>
+                                    </div>
+                                    
+                                    <div class="contact-card">
+                                        <span class="contact-icon">🏥</span>
+                                        <h4>SAMU</h4>
+                                        <p class="contact-number">192</p>
+                                        <p>Emergências médicas</p>
+                                    </div>
+                                    
+                                    <div class="contact-card">
+                                        <span class="contact-icon">💧</span>
+                                        <h4>HidroSafe</h4>
+                                        <p class="contact-number">0800-HIDRO</p>
+                                        <p>Suporte técnico 24h</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="image-content">
-                        <img src="/placeholder.svg?height=350&width=450" alt="Mapa do Brasil destacando regiões de alto risco para enchentes" class="section-image">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção 5: Benefícios -->
+        <!-- Seção 7: Benefícios do Sistema -->
         <section id="beneficios" class="section section-beneficios">
             <div class="container">
                 <div class="section-content fade-in">
                     <div class="text-content">
-                        <h2 class="section-title">Benefícios do Sistema</h2>
+                        <h2 class="section-title">Benefícios Comprovados do Sistema HidroSafe</h2>
                         <p class="section-text">
-                            Alertas com 6 horas de antecedência para evacuação segura. Monitoramento 24h com notificações push instantâneas no smartphone.
+                            Com mais de 5 anos de operação, o HidroSafe já salvou mais de 2.000 vidas e evitou prejuízos superiores a R$ 500 milhões em danos materiais.
                         </p>
                         <p class="section-text">
-                            Redução de 80% nos prejuízos materiais comprovada. Integração com Defesa Civil para coordenação de emergências eficiente.
+                            Nossa tecnologia oferece alertas com 6 horas de antecedência, tempo suficiente para evacuação segura e proteção de bens, com 94% de precisão nos alertas emitidos.
                         </p>
+                        
+                        <div class="benefits-detailed">
+                            <h3>Resultados Mensuráveis:</h3>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <span class="result-number">2.000+</span>
+                                    <span class="result-label">Vidas Salvas</span>
+                                    <span class="result-desc">Evacuações bem-sucedidas</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">R$ 500M</span>
+                                    <span class="result-label">Prejuízos Evitados</span>
+                                    <span class="result-desc">Proteção patrimonial</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">94%</span>
+                                    <span class="result-label">Precisão</span>
+                                    <span class="result-desc">Alertas corretos</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-number">6h</span>
+                                    <span class="result-label">Antecedência</span>
+                                    <span class="result-desc">Tempo para evacuação</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="benefits-grid">
                             <div class="benefit-card">
                                 <div class="benefit-icon">⏰</div>
                                 <h4>Alerta Antecipado</h4>
-                                <p>6h de antecedência</p>
+                                <p>6 horas de antecedência</p>
+                                <ul class="benefit-details">
+                                    <li>Tempo para evacuação segura</li>
+                                    <li>Proteção de bens materiais</li>
+                                    <li>Coordenação com autoridades</li>
+                                </ul>
                             </div>
                             <div class="benefit-card">
                                 <div class="benefit-icon">📱</div>
-                                <h4>Notificações Push</h4>
-                                <p>Alertas instantâneos</p>
+                                <h4>Múltiplos Canais</h4>
+                                <p>Alertas garantidos</p>
+                                <ul class="benefit-details">
+                                    <li>Push notifications</li>
+                                    <li>SMS e chamadas</li>
+                                    <li>E-mail e redes sociais</li>
+                                </ul>
                             </div>
                             <div class="benefit-card">
                                 <div class="benefit-icon">💰</div>
-                                <h4>Economia</h4>
+                                <h4>Economia Comprovada</h4>
                                 <p>80% menos prejuízos</p>
+                                <ul class="benefit-details">
+                                    <li>Redução de danos materiais</li>
+                                    <li>Menor custo de recuperação</li>
+                                    <li>Proteção de investimentos</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="image-content">
-                        <img src="/placeholder.svg?height=350&width=450" alt="Smartphone mostrando alerta de enchente com tempo de evacuação" class="section-image">
+                        <img src="/placeholder.svg?height=400&width=500" alt="Família sendo evacuada preventivamente com sistema de alerta funcionando" class="section-image">
+                        <div class="success-stories">
+                            <h4>Casos de Sucesso</h4>
+                            <div class="story-card">
+                                <h5>São Paulo - Janeiro 2024</h5>
+                                <p>15.000 pessoas evacuadas com segurança. Zero mortes registradas.</p>
+                            </div>
+                            <div class="story-card">
+                                <h5>Rio de Janeiro - Abril 2023</h5>
+                                <p>R$ 50 milhões em danos evitados com alertas antecipados.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Seção 6: Uso no Dia a Dia -->
-        <section id="uso-diario" class="section section-uso">
+        <!-- Seção 8: Recursos e Ferramentas -->
+        <section id="recursos" class="section section-recursos">
             <div class="container">
-                <div class="section-content reverse fade-in">
-                    <div class="text-content">
-                        <h2 class="section-title">Proteção Diária</h2>
-                        <p class="section-text">
-                            Receber alertas meteorológicos personalizados para sua região específica diariamente.
-                        </p>
-                        <p class="section-text">
-                            Ativar modo emergência automaticamente quando sensores detectam risco iminente.
-                        </p>
-                        <div class="daily-steps">
-                            <div class="step-item">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <h4>Monitoramento</h4>
-                                    <p>Sistema verifica condições 24h</p>
+                <div class="section-content fade-in">
+                    <div class="full-width-content">
+                        <h2 class="section-title center">Recursos e Ferramentas Disponíveis</h2>
+                        
+                        <div class="resources-grid">
+                            <div class="resource-category">
+                                <h3>📚 Material Educativo</h3>
+                                <div class="resource-items">
+                                    <div class="resource-item">
+                                        <span class="resource-icon">📖</span>
+                                        <h4>Guia Completo de Prevenção</h4>
+                                        <p>Manual detalhado com 50 páginas sobre preparação para enchentes</p>
+                                        <a href="#" class="resource-link">Download PDF</a>
+                                    </div>
+                                    <div class="resource-item">
+                                        <span class="resource-icon">🎥</span>
+                                        <h4>Vídeos Educativos</h4>
+                                        <p>Série de 12 vídeos sobre segurança e prevenção</p>
+                                        <a href="#" class="resource-link">Assistir</a>
+                                    </div>
+                                    <div class="resource-item">
+                                        <span class="resource-icon">🎮</span>
+                                        <h4>Simulador de Emergência</h4>
+                                        <p>Treine procedimentos de evacuação virtualmente</p>
+                                        <a href="#" class="resource-link">Jogar</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="step-item">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <h4>Análise</h4>
-                                    <p>IA processa dados meteorológicos</p>
+                            
+                            <div class="resource-category">
+                                <h3>🛠️ Ferramentas Práticas</h3>
+                                <div class="resource-items">
+                                    <div class="resource-item">
+                                        <span class="resource-icon">📋</span>
+                                        <h4>Checklist de Preparação</h4>
+                                        <p>Lista interativa para preparar sua casa e família</p>
+                                        <a href="#" class="resource-link">Usar Ferramenta</a>
+                                    </div>
+                                    <div class="resource-item">
+                                        <span class="resource-icon">🧮</span>
+                                        <h4>Calculadora de Risco</h4>
+                                        <p>Avalie o risco de enchente do seu endereço</p>
+                                        <a href="#" class="resource-link">Calcular</a>
+                                    </div>
+                                    <div class="resource-item">
+                                        <span class="resource-icon">📍</span>
+                                        <h4>Mapa de Abrigos</h4>
+                                        <p>Localize abrigos públicos próximos à sua região</p>
+                                        <a href="#" class="resource-link">Ver Mapa</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="step-item">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <h4>Alerta</h4>
-                                    <p>Notificação enviada com antecedência</p>
+                            
+                            <div class="resource-category">
+                                <h3>📱 Aplicativos</h3>
+                                <div class="resource-items">
+                                    <div class="resource-item">
+                                        <span class="resource-icon">📲</span>
+                                        <h4>HidroSafe Mobile</h4>
+                                        <p>App principal com alertas e monitoramento</p>
+                                        <div class="app-badges">
+                                            <a href="#" class="app-badge">📱 iOS</a>
+                                            <a href="#" class="app-badge">🤖 Android</a>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <span class="resource-icon">⌚</span>
+                                        <h4>HidroSafe Watch</h4>
+                                        <p>Versão para smartwatch com alertas vibratórios</p>
+                                        <div class="app-badges">
+                                            <a href="#" class="app-badge">⌚ Watch OS</a>
+                                            <a href="#" class="app-badge">🔄 Wear OS</a>
+                                        </div>
+                                    </div>
+                                    <div class="resource-item">
+                                        <span class="resource-icon">🖥️</span>
+                                        <h4>Portal Web</h4>
+                                        <p>Dashboard completo para computadores</p>
+                                        <a href="#" class="resource-link">Acessar</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="image-content">
-                        <img src="/placeholder.svg?height=350&width=450" alt="Interface do aplicativo mostrando monitoramento em tempo real e alertas" class="section-image">
+                        
+                        <div class="community-section">
+                            <h3>👥 Comunidade HidroSafe</h3>
+                            <div class="community-stats">
+                                <div class="stat">
+                                    <span class="stat-number">150K+</span>
+                                    <span class="stat-label">Usuários Ativos</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">500+</span>
+                                    <span class="stat-label">Cidades Cobertas</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">24/7</span>
+                                    <span class="stat-label">Suporte Disponível</span>
+                                </div>
+                            </div>
+                            
+                            <div class="community-features">
+                                <div class="feature">
+                                    <h4>💬 Fórum da Comunidade</h4>
+                                    <p>Compartilhe experiências e tire dúvidas com outros usuários</p>
+                                </div>
+                                <div class="feature">
+                                    <h4>📢 Alertas Comunitários</h4>
+                                    <p>Receba e envie alertas de situações locais em tempo real</p>
+                                </div>
+                                <div class="feature">
+                                    <h4>🎓 Treinamentos Gratuitos</h4>
+                                    <p>Participe de workshops online sobre prevenção de enchentes</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -257,38 +848,58 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>🌊 FloodGuard</h3>
-                    <p>Protegendo vidas e patrimônios através de tecnologia avançada de prevenção de enchentes.</p>
+                    <h3>💧 HidroSafe</h3>
+                    <p>Protegendo vidas e patrimônios com tecnologia inteligente de monitoramento hídrico desde 2019.</p>
+                    <div class="footer-stats">
+                        <p><strong>2.000+</strong> vidas salvas</p>
+                        <p><strong>R$ 500M</strong> em prejuízos evitados</p>
+                        <p><strong>150K+</strong> usuários protegidos</p>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Recursos</h4>
                     <ul class="footer-links">
                         <li><a href="#problema">Dados sobre Enchentes</a></li>
+                        <li><a href="#estatisticas">Estatísticas Detalhadas</a></li>
+                        <li><a href="#mapa-risco">Mapa de Risco</a></li>
                         <li><a href="#tecnologias">Nossa Tecnologia</a></li>
-                        <li><a href="#beneficios">Como Funciona</a></li>
-                        <li><a href="#uso-diario">Uso Diário</a></li>
+                        <li><a href="#preparacao">Guia de Preparação</a></li>
+                        <li><a href="#emergencia">Procedimentos de Emergência</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Emergência</h4>
+                    <h4>Emergência 24h</h4>
                     <ul class="footer-links">
-                        <li><a href="tel:193">Bombeiros: 193</a></li>
-                        <li><a href="tel:199">Defesa Civil: 199</a></li>
-                        <li><a href="mailto:alerta@floodguard.com.br">alerta@floodguard.com.br</a></li>
+                        <li><a href="tel:193">🚒 Bombeiros: 193</a></li>
+                        <li><a href="tel:199">🛡️ Defesa Civil: 199</a></li>
+                        <li><a href="tel:190">🚓 Polícia: 190</a></li>
+                        <li><a href="tel:192">🏥 SAMU: 192</a></li>
+                        <li><a href="tel:08004437673">💧 HidroSafe: 0800-HIDRO</a></li>
+                        <li><a href="mailto:emergencia@hidrosafe.com.br">📧 emergencia@hidrosafe.com.br</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Regiões Atendidas</h4>
+                    <h4>Cobertura Nacional</h4>
                     <ul class="footer-links">
-                        <li>Grande São Paulo</li>
-                        <li>Rio de Janeiro</li>
-                        <li>Região Sul</li>
-                        <li>Minas Gerais</li>
+                        <li>🏙️ Grande São Paulo</li>
+                        <li>🏖️ Rio de Janeiro</li>
+                        <li>🌿 Região Sul</li>
+                        <li>⛰️ Minas Gerais</li>
+                        <li>🌴 Bahia e Nordeste</li>
+                        <li>🌳 Centro-Oeste</li>
                     </ul>
+                    <div class="coverage-note">
+                        <p><small>Expansão contínua para novas regiões. Consulte disponibilidade em sua cidade.</small></p>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 FloodGuard Brasil. Todos os direitos reservados. | Sistema desenvolvido em parceria com Defesa Civil</p>
+                <p>&copy; 2024 HidroSafe Brasil. Todos os direitos reservados. | Sistema desenvolvido em parceria com Defesa Civil, INMET e universidades brasileiras</p>
+                <div class="footer-certifications">
+                    <span>🏆 Certificado ISO 27001</span>
+                    <span>🛡️ Homologado ANATEL</span>
+                    <span>✅ Aprovado Defesa Civil</span>
+                </div>
             </div>
         </div>
     </footer>
