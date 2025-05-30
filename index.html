@@ -21,29 +21,150 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header com Menu Fixo -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <h1>💧 HidroSafe</h1>
+    <!-- Header com Menu Fixo Melhorado -->
+<header class="header">
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">💧</div>
+                <div class="logo-text">
+                    <h1>HidroSafe</h1>
+                    <span class="logo-subtitle">Prevenção Inteligente!</span>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="#problema" class="nav-link">Dados</a></li>
-                    <li><a href="#estatisticas" class="nav-link">Estatísticas</a></li>
-                    <li><a href="#mapa-risco" class="nav-link">Mapa de Risco</a></li>
-                    <li><a href="#tecnologias" class="nav-link">Tecnologia</a></li>
-                    <li><a href="#preparacao" class="nav-link">Preparação</a></li>
-                    <li><a href="#emergencia" class="nav-link">Emergência</a></li>
-                    <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
-                    <li><a href="#recursos" class="nav-link">Recursos</a></li>
-                </ul>
             </div>
-        </nav>
-    </header>
+            
+            <!-- Menu Hamburger para Mobile -->
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="#problema" class="nav-link" data-text="Dados">Dados</a></li>
+                <li><a href="#estatisticas" class="nav-link" data-text="Estatísticas">Estatísticas</a></li>
+                <li><a href="#mapa-risco" class="nav-link" data-text="Mapa">Mapa de Risco</a></li>
+                <li><a href="#tecnologias" class="nav-link" data-text="Tecnologia">Tecnologia</a></li>
+                <li><a href="#preparacao" class="nav-link" data-text="Preparação">Preparação</a></li>
+                <li><a href="#emergencia" class="nav-link" data-text="Emergência">Emergência</a></li>
+                <li><a href="#beneficios" class="nav-link" data-text="Benefícios">Benefícios</a></li>
+                <li><a href="#recursos" class="nav-link" data-text="Recursos">Recursos</a></li>
+                <li><a href="#" class="nav-link cta-button">Baixar App</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Indicador de progresso de scroll -->
+    <div class="scroll-progress"></div>
+</header>
 
     <!-- Main Content -->
     <main class="main">
+        <!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-background">
+        <div class="hero-particles"></div>
+        <div class="hero-waves">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚨</span>
+                    <span>Sistema de Alerta Inteligente</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-highlight">Proteja</span> sua família das
+                    <span class="title-gradient">enchentes</span>
+                </h1>
+                <p class="hero-description">
+                    Tecnologia avançada de monitoramento que salva vidas com alertas antecipados de até 6 horas. 
+                    Mais de 2.000 vidas já foram salvas e R$ 500 milhões em prejuízos evitados.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="2000">0</span>
+                        <span class="stat-label">Vidas Salvas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span class="stat-label">Milhões Economizados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="94">0</span>
+                        <span class="stat-label">% de Precisão</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-primary">
+                        <span class="btn-icon">📱</span>
+                        Baixar App Grátis
+                    </a>
+                    <a href="#problema" class="btn btn-secondary">
+                        <span class="btn-icon">📊</span>
+                        Ver Dados
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-phone">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="app-interface">
+                                <div class="app-header">
+                                    <div class="app-title">HidroSafe</div>
+                                    <div class="app-status online">Online</div>
+                                </div>
+                                <div class="alert-card">
+                                    <div class="alert-icon">⚠️</div>
+                                    <div class="alert-content">
+                                        <h4>Alerta Preventivo</h4>
+                                        <p>Chuva intensa prevista em 4h</p>
+                                        <div class="alert-progress">
+                                            <div class="progress-bar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="weather-info">
+                                    <div class="weather-item">
+                                        <span>🌧️</span>
+                                        <span>45mm/h</span>
+                                    </div>
+                                    <div class="weather-item">
+                                        <span>📍</span>
+                                        <span>São Paulo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-elements">
+                    <div class="floating-card card-1">
+                        <span class="card-icon">🛡️</span>
+                        <span class="card-text">Proteção 24h</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <span class="card-icon">⚡</span>
+                        <span class="card-text">Alerta Instantâneo</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <span class="card-icon">📊</span>
+                        <span class="card-text">Dados Precisos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
         <!-- Seção 1: O Problema das Enchentes -->
         <section id="problema" class="section section-problema">
             <div class="container">
@@ -849,7 +970,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>💧 HidroSafe</h3>
-                    <p>Protegendo vidas e patrimônios com tecnologia inteligente de monitoramento hídrico desde 2019.</p>
+                    <p>Não é sorte. É prevenção inteligente.</p>
                     <div class="footer-stats">
                         <p><strong>2.000+</strong> vidas salvas</p>
                         <p><strong>R$ 500M</strong> em prejuízos evitados</p>

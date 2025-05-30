@@ -11,9 +11,251 @@ class FloodGuardAnimations {
     this.setupHeaderScroll()
     this.setupSmoothScrolling()
     this.setupParallaxEffects()
+    this.setupMobileMenu()
+    this.setupScrollProgress()
+    this.setupHeroAnimations()
+    this.setupCounterAnimations()
   }
 
-  // Animações de scroll para seções
+  // Configurar menu mobile
+  setupMobileMenu() {
+    const mobileToggle = document.querySelector(".mobile-menu-toggle")
+    const navMenu = document.querySelector(".nav-menu")
+
+    if (mobileToggle && navMenu) {
+      mobileToggle.addEventListener("click", () => {
+        mobileToggle.classList.toggle("active")
+        navMenu.classList.toggle("active")
+      })
+
+      // Fechar menu ao clicar em um link
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileToggle.classList.remove("active")
+          navMenu.classList.remove("active")
+        })
+      })
+    }
+  }
+
+  // Configurar indicador de progresso de scroll
+  setupScrollProgress() {
+    const progressBar = document.querySelector(".scroll-progress")
+
+    if (progressBar) {
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.pageYOffset
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+        const scrollPercent = scrollTop / docHeight
+
+        progressBar.style.transform = `scaleX(${scrollPercent})`
+      })
+    }
+  }
+
+  // Configurar animações do hero
+  setupHeroAnimations() {
+    // Animação de digitação para o título
+    const heroTitle = document.querySelector(".hero-title")
+    if (heroTitle) {
+      this.typewriterEffect(heroTitle)
+    }
+
+    // Animação de partículas
+    this.createParticleEffect()
+  }
+
+  // Efeito de digitação
+  typewriterEffect(element) {
+    const text = element.innerHTML
+    element.innerHTML = ""
+    element.style.opacity = "1"
+
+    let i = 0
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i)
+        i++
+      } else {
+        clearInterval(timer)
+      }
+    }, 50)
+  }
+
+  // Criar efeito de partículas
+  createParticleEffect() {
+    const particlesContainer = document.querySelector(".hero-particles")
+    if (!particlesContainer) return
+
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement("div")
+      particle.className = "particle"
+      particle.style.cssText = `
+        position: absolute;
+        width: ${Math.random() * 4 + 2}px;
+        height: ${Math.random() * 4 + 2}px;
+        background: rgba(56, 189, 248, ${Math.random() * 0.5 + 0.2});
+        border-radius: 50%;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        animation: particleMove ${Math.random() * 10 + 10}s linear infinite;
+      `
+      particlesContainer.appendChild(particle)
+    }
+
+    // Adicionar animação CSS para partículas
+    const style = document.createElement("style")
+    style.textContent = `
+      @keyframes particleMove {
+        0% { transform: translateY(0px) translateX(0px); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) translateX(${Math.random() * 200 - 100}px); opacity: 0; }
+      }
+    `
+    document.head.appendChild(style)
+  }
+
+  // Configurar animações de contador
+  setupCounterAnimations() {
+    const counters = document.querySelectorAll("[data-count]")
+
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: "0px",
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const counter = entry.target
+          const target = Number.parseInt(counter.dataset.count)
+          this.animateCounter(counter, target)
+          observer.unobserve(counter)
+        }
+      })
+    }, observerOptions)
+
+    counters.forEach((counter) => observer.observe(counter))
+  }
+
+  // Animar contador
+  animateCounter(element, target) {
+    let current = 0
+    const increment = target / 100
+    const timer = setInterval(() => {
+      current += increment
+      if (current >= target) {
+        current = target
+        clearInterval(timer)
+      }
+      element.textContent = Math.floor(current).toLocaleString()
+    }, 20)
+  }
+
+  // Efeito no header durante o scroll (melhorado)
+  setupHeaderScroll() {
+    const header = document.querySelector(".header")
+    let lastScrollY = window.scrollY
+
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.scrollY
+
+      if (currentScrollY > 100) {
+        header.classList.add("scrolled")
+      } else {
+        header.classList.remove("scrolled")
+      }
+
+      // Esconder/mostrar header baseado na direção do scroll
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        header.style.transform = "translateY(-100%)"
+      } else {
+        header.style.transform = "translateY(0)"
+      }
+
+      lastScrollY = currentScrollY
+    })
+  }
+
+  // Navegação ativa baseada no scroll (melhorada)
+  setupActiveNavigation() {
+    const sections = document.querySelectorAll(".section")
+    const navLinks = document.querySelectorAll(".nav-link:not(.cta-button)")
+
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: "-80px 0px -80px 0px",
+    }
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id
+
+          // Remove active de todos os links
+          navLinks.forEach((link) => link.classList.remove("active"))
+
+          // Adiciona active ao link correspondente
+          const activeLink = document.querySelector(`a[href="#${sectionId}"]:not(.cta-button)`)
+          if (activeLink) {
+            activeLink.classList.add("active")
+          }
+        }
+      })
+    }, observerOptions)
+
+    sections.forEach((section) => {
+      if (section.id) {
+        navObserver.observe(section)
+      }
+    })
+  }
+
+  // Scroll suave para âncoras (melhorado)
+  setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", (e) => {
+        e.preventDefault()
+        const target = document.querySelector(anchor.getAttribute("href"))
+
+        if (target) {
+          const headerHeight = document.querySelector(".header").offsetHeight
+          const targetPosition = target.offsetTop - headerHeight - 20
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          })
+        }
+      })
+    })
+  }
+
+  // Efeitos de parallax sutis (melhorados)
+  setupParallaxEffects() {
+    window.addEventListener("scroll", () => {
+      const scrolled = window.pageYOffset
+
+      // Parallax para imagens
+      const parallaxElements = document.querySelectorAll(".section-image")
+      parallaxElements.forEach((element, index) => {
+        const speed = 0.05 + index * 0.02
+        const yPos = -(scrolled * speed)
+        element.style.transform = `translateY(${yPos}px)`
+      })
+
+      // Parallax para elementos flutuantes
+      const floatingCards = document.querySelectorAll(".floating-card")
+      floatingCards.forEach((card, index) => {
+        const speed = 0.1 + index * 0.05
+        const yPos = scrolled * speed
+        card.style.transform = `translateY(${yPos}px)`
+      })
+    })
+  }
+
+  // Animações de scroll para seções (melhoradas)
   setupScrollAnimations() {
     const observerOptions = {
       threshold: 0.1,
@@ -25,6 +267,15 @@ class FloodGuardAnimations {
         if (entry.isIntersecting) {
           const element = entry.target
           element.classList.add("visible")
+
+          // Adicionar delay escalonado para elementos filhos
+          const children = element.querySelectorAll(".stat-item, .tech-item, .benefit-card, .resource-item")
+          children.forEach((child, index) => {
+            setTimeout(() => {
+              child.style.animation = `fadeInUp 0.6s ease-out forwards`
+              child.style.animationDelay = `${index * 0.1}s`
+            }, index * 100)
+          })
 
           // Animações específicas por seção
           this.animateSection(element)
@@ -151,97 +402,6 @@ class FloodGuardAnimations {
           number.style.animation = "pulse 0.5s ease-in-out"
         }, 300)
       }, index * 250)
-    })
-  }
-
-  // Navegação ativa baseada no scroll
-  setupActiveNavigation() {
-    const sections = document.querySelectorAll(".section")
-    const navLinks = document.querySelectorAll(".nav-link")
-
-    const observerOptions = {
-      threshold: 0.3,
-      rootMargin: "-70px 0px -70px 0px",
-    }
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id
-
-          // Remove active de todos os links
-          navLinks.forEach((link) => link.classList.remove("active"))
-
-          // Adiciona active ao link correspondente
-          const activeLink = document.querySelector(`a[href="#${sectionId}"]`)
-          if (activeLink) {
-            activeLink.classList.add("active")
-          }
-        }
-      })
-    }, observerOptions)
-
-    sections.forEach((section) => {
-      navObserver.observe(section)
-    })
-  }
-
-  // Efeito no header durante o scroll
-  setupHeaderScroll() {
-    const header = document.querySelector(".header")
-    let lastScrollY = window.scrollY
-
-    window.addEventListener("scroll", () => {
-      const currentScrollY = window.scrollY
-
-      if (currentScrollY > 100) {
-        header.classList.add("scrolled")
-      } else {
-        header.classList.remove("scrolled")
-      }
-
-      // Esconder/mostrar header baseado na direção do scroll
-      if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        header.style.transform = "translateY(-100%)"
-      } else {
-        header.style.transform = "translateY(0)"
-      }
-
-      lastScrollY = currentScrollY
-    })
-  }
-
-  // Scroll suave para âncoras
-  setupSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", (e) => {
-        e.preventDefault()
-        const target = document.querySelector(anchor.getAttribute("href"))
-
-        if (target) {
-          const headerHeight = document.querySelector(".header").offsetHeight
-          const targetPosition = target.offsetTop - headerHeight - 20
-
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          })
-        }
-      })
-    })
-  }
-
-  // Efeitos de parallax sutis
-  setupParallaxEffects() {
-    window.addEventListener("scroll", () => {
-      const scrolled = window.pageYOffset
-      const parallaxElements = document.querySelectorAll(".section-image")
-
-      parallaxElements.forEach((element, index) => {
-        const speed = 0.1 + index * 0.05
-        const yPos = -(scrolled * speed)
-        element.style.transform = `translateY(${yPos}px)`
-      })
     })
   }
 }
@@ -993,5 +1153,5 @@ document.addEventListener("DOMContentLoaded", () => {
     new RiskCalculator()
   }, 1000)
 
-  console.log("💧 HidroSafe - Portal Completo carregado com todas as funcionalidades!")
+  console.log("💧 HidroSafe - Portal Completo")
 })
